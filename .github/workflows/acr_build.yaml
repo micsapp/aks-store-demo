@@ -46,7 +46,7 @@ jobs:
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v2
         with:
-          login-server: ${{ VARS.ACR_REGISTRY }}
+          login-server: ${{ vars.ACR_REGISTRY }}
           username: ${{ secrets.ACR_CLIENT_ID }}
           password: ${{ secrets.ACR_CLIENT_PASSWORD }}
 
@@ -58,5 +58,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ${{ VARS.ACR_REGISTRY }}/${{ steps.set-variables.outputs.IMAGE }}:latest
-            ${{ VARS.ACR_REGISTRY }}/${{ steps.set-variables.outputs.IMAGE }}:${{ github.sha }}
+            ${{ vars.ACR_REGISTRY }}/${{ steps.set-variables.outputs.IMAGE }}:latest
+            ${{ vars.ACR_REGISTRY }}/${{ steps.set-variables.outputs.IMAGE }}:${{ github.sha }}
